@@ -1,0 +1,64 @@
+# Node.js dependencies
+node_modules/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Production build
+build/
+dist/
+
+# Environment variables
+.env
+.env.*.local
+
+# Editor and system files
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
+
+# Testing and coverage
+coverage/
+*.lcov
+
+# Temporary files
+.tmp/
+.cache/
+*.pid
+*.seed
+*.pid.lock
+
+# Parcel-bundler cache (if used)
+.cache/
+
+# MacOS system files
+.DS_Store
+
+# eslint cache
+.eslintcache
+
+# Prettier
+.prettier.cache
+
+# ServiceWorker cache
+sw.js
+workbox-*
+
+# Storybook
+out/
+storybook-static/
+
+# IntelliJ project files
+*.iml
+.idea/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+lerna-debug.log*
