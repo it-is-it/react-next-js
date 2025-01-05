@@ -11,8 +11,8 @@ export default function App() {
 
 function TipCalculator() {
   const [bill, setBill] = useState('');
-  const [percentage1, setPercentage1] = useState('0');
-  const [percentage2, setPercentage2] = useState('0');
+  const [percentage1, setPercentage1] = useState(0);
+  const [percentage2, setPercentage2] = useState(0);
 
   const calculateTotal = () => {
     const billValue = parseFloat(bill);
@@ -26,8 +26,8 @@ function TipCalculator() {
 
   const resetForm = () => {
     setBill('');
-    setPercentage1('0');
-    setPercentage2('0');
+    setPercentage1(0);
+    setPercentage2(0); 
   };
 
   const { total, tip } = calculateTotal();
@@ -47,8 +47,11 @@ function TipCalculator() {
       >
         How did you like the service?
       </SelectPercentage>
-      <Output total={total} bill={bill} tip={tip} />
-      <Reset resetForm={resetForm} />
+      {bill > 0 && (<>
+        <Output total={total} bill={bill} tip={tip} />
+        <Reset resetForm={resetForm} />
+      </>
+    )}
     </div>
   );
 }
@@ -60,7 +63,7 @@ function BillInput({ bill, onSetBill }) {
       <input
         type="text"
         value={bill}
-        onChange={(e) => onSetBill(e.target.value)}
+        onChange={(e) => onSetBill(Number(e.target.value))}
         placeholder="Enter the bill amount"
       />
     </div>
