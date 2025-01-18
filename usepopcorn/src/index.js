@@ -26,13 +26,13 @@ root.render(
     <StarRating
       maxRating={10}
       size={24}
-      onSetRating={(rating) => console.log("Rating set to:", rating)} // Added onSetRating
+      onSetRating={(rating) =>(rating)} 
     />
     <StarRating
       className="test"
       messages={['Terrible', 'Bad', 'Okay', 'Good', 'Amazing']}
-      defaultRating={3} // Fixed typo in "defaultRating"
-      onSetRating={(rating) => console.log("Message rating set to:", rating)} // Added onSetRating
+      defaultRating={3} 
+      onSetRating={(rating) => (rating)} 
     />
     <Test />
   </React.StrictMode>
