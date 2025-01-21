@@ -51,7 +51,7 @@ const tempWatchedData = [
 const average = (arr) =>
   arr.reduce((acc, cur, i, arr) => acc + cur / arr.length, 0);
 
-const KEY = "f84fc31d";
+const KEY = "d39e1ee8";
 
 export default function App() {
   const [query, setQuery] = useState("");
