@@ -19,7 +19,6 @@ function getWeatherIcon(wmoCode) {
 }
 
 function convertToFlag(countryCode) {
-  // Check if countryCode is valid
   if (!countryCode || countryCode.length !== 2) {
     console.error('Invalid country code:', countryCode);
     return '🏳'; // Default flag for invalid input
@@ -29,8 +28,22 @@ function convertToFlag(countryCode) {
     .toUpperCase()
     .split('')
     .map((char) => 127397 + char.charCodeAt());
-  return String.fromCodePoint(...codePoints);
+
+  const flag = String.fromCodePoint(...codePoints);
+
+  // Check if the environment supports flag emojis
+  const supportsFlag = flag !== countryCode.toUpperCase();
+
+  if (supportsFlag) {
+    return flag;
+  } else {
+    // Return a fallback image or text
+    return `<img src="path_to_flags/${countryCode.toUpperCase()}.svg" alt="${countryCode.toUpperCase()} flag">`;
+  }
 }
+
+console.log(convertToFlag('NP')); // 🇳🇵 or fallback image
+
 
 
 function formatDay(dateStr) {
@@ -40,15 +53,19 @@ function formatDay(dateStr) {
 }
 
 class App extends React.Component {
-  state = {
-    location: '',
-    isLoading: false,
-    displayLocation: '',
-    weather: {},
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      location: 'Kathmandu',
+      isLoading: false,
+      displayLocation: '',
+      weather: {},
+    };
 
-  fetchWeather = async () => {
-    if (this.state.location.length < 2) return this.setState({weather: {}, loading: false});
+    this.fetchWeather = this.fetchWeather.bind(this);
+  }
+
+  async fetchWeather() {
     try {
       this.setState({ isLoading: true });
       // 1) Getting location (geocoding)
@@ -56,6 +73,7 @@ class App extends React.Component {
         `https://geocoding-api.open-meteo.com/v1/search?name=${this.state.location}`
       );
       const geoData = await geoRes.json();
+      console.log(geoData);
 
       if (!geoData.results) throw new Error('Location not found');
 
@@ -76,32 +94,21 @@ class App extends React.Component {
     } finally {
       this.setState({ isLoading: false });
     }
-  };
-
-  setLocation = (e) => this.setState({ location: e.target.value });
-
-  componentDidMount() {
-    // this.fetchWeather();
-
-    this.setState({ location: localStorage.getItem('location') || '' });
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    if (this.state.location !== prevState.location) {
-      this.fetchWeather();
-
-      localStorage.setItem('location', this.state.location);
-    }
   }
 
   render() {
     return (
       <div className="app">
         <h1>Classy Weather</h1>
-        <Input
-          location={this.state.location}
-          onChangeLocation={this.setLocation}
-        />
+        <div>
+          <input
+            type="text"
+            placeholder="Search from location...."
+            value={this.state.location}
+            onChange={(e) => this.setState({ location: e.target.value })}
+          />
+        </div>
+        <button onClick={this.fetchWeather}>Get Weather</button>
         {this.state.isLoading && <p className="loader">Loading...</p>}
 
         {this.state.weather.weathercode && (
@@ -117,25 +124,7 @@ class App extends React.Component {
 
 export default App;
 
-class Input extends React.Component {
-  render() {
-    return (
-      <div>
-        <input
-          type="text"
-          placeholder="Search from location...."
-          value={this.props.location}
-          onChange={this.props.onChangeLocation}
-        />
-      </div>
-    );
-  }
-}
-
 class Weather extends React.Component {
-  componentWillUnmount() {
-
-  }
   render() {
     const {
       temperature_2m_max: max,
@@ -166,11 +155,11 @@ class Weather extends React.Component {
 
 class Day extends React.Component {
   render() {
-    const { date, max, min, code, isToday } = this.props;
+    const { date, max, min, code ,isToday} = this.props;
     return (
-      <li className="day">
+      <li className='day'>
         <span>{getWeatherIcon(code)}</span>
-        <p>{isToday ? 'Today' : formatDay(date)}</p>
+        <p>{isToday ? 'Today' :formatDay(date)}</p>
         <p>
           {Math.floor(min)}&deg; &mdash; <strong>{Math.ceil(max)}&deg;</strong>
         </p>
