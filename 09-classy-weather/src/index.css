@@ -31,11 +31,12 @@ body {
   border: 2px solid #222;
   outline: 2px solid #222;
   outline-offset: 1.2rem;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 h1 {
   font-weight: 400;
-  font-size: 6rem;
+  font-size: clamp(4rem, 5vw, 6rem);
   letter-spacing: 2px;
   word-spacing: 5px;
 }
@@ -43,6 +44,7 @@ h1 {
 h2 {
   text-align: center;
   margin-bottom: 2.4rem;
+  font-size: clamp(2.4rem, 3vw, 3rem);
 }
 
 input {
@@ -53,10 +55,16 @@ input {
   padding: 1.6rem 3.2rem;
   border: none;
   width: 32rem;
+  box-shadow: inset 0px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 input:focus {
   outline: 2px solid #222;
+  background-color: #fff;
+}
+
+input:hover {
+  background-color: #ecc5c0;
 }
 
 .weather {
@@ -69,12 +77,12 @@ input:focus {
   background-color: #f0d2ce;
   padding: 1.6rem 0 2rem;
   width: 12.8rem;
-
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 1.2rem;
   cursor: pointer;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .day span {
@@ -86,7 +94,52 @@ input:focus {
   outline: 2px solid #222;
 }
 
+.day.today {
+  background-color: #eabfb9;
+  font-weight: bold;
+  outline: 3px solid #222;
+}
+
+.day:hover {
+  background-color: #ecc5c0;
+  outline: 2px solid #222;
+  transform: scale(1.05);
+  transition: transform 0.2s, background-color 0.2s;
+}
+
 .loader {
   font-size: 2.4rem;
   font-weight: 700;
+  animation: fadeIn 1s infinite;
+}
+
+@keyframes fadeIn {
+  0%, 100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.error {
+  color: #d9534f;
+  font-size: 2.4rem;
+  font-weight: 700;
+}
+
+@media (max-width: 768px) {
+  .app {
+    width: 90%;
+    padding: 4rem 0;
+  }
+
+  .weather {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  input {
+    width: 80%;
+  }
 }
