@@ -35,9 +35,6 @@ function App() {
     setPosts([]);
   }
 
-  // Whenever `isFakeDark` changes, we toggle the `fake-dark-mode` class on the HTML element (see in "Elements" dev tool).
-
-
   return (
     <PostContext.Provider
       value={{
@@ -64,12 +61,14 @@ function App() {
 function Button() {
   const { isFakeDark, setIsFakeDark } = useContext(PostContext);
 
+  // Whenever `isFakeDark` changes, we toggle the `fake-dark-mode` class on the HTML element (see in "Elements" dev tool).
   useEffect(
     function () {
       document.documentElement.classList.toggle('fake-dark-mode');
     },
     [isFakeDark]
   );
+
   return (
     <button
       onClick={() => setIsFakeDark((isFakeDark) => !isFakeDark)}
