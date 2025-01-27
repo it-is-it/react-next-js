@@ -1,4 +1,4 @@
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import styles from './Map.module.css';
 import {
   MapContainer,
@@ -12,19 +12,18 @@ import { useState, useEffect } from 'react';
 import { useCities } from '../contexts/CitiesContext';
 import { useGeolocation } from '../hooks/useGeolocation';
 import Button from './Button';
+import { useUrlPosition } from '../hooks/useUrlPosition';
 
 function Map() {
   const { cities } = useCities();
   const [mapPosition, setMapPosition] = useState([27.6653, 85.2715]);
-  const [searchParams] = useSearchParams();
   const {
     getPosition,
     position: geolocationPosition,
     isLoading: isLoadingPosition,
   } = useGeolocation();
 
-  const mapLat = parseFloat(searchParams.get('lat'));
-  const mapLng = parseFloat(searchParams.get('lng'));
+  const [mapLat, mapLng] = useUrlPosition();
 
   useEffect(() => {
     if (!isNaN(mapLat) && !isNaN(mapLng)) {
@@ -32,15 +31,25 @@ function Map() {
     }
   }, [mapLat, mapLng]);
 
+  useEffect(
+    function () {
+      if (geolocationPosition)
+        setMapPosition([geolocationPosition.lat, geolocationPosition.lng]);
+    },
+    [geolocationPosition]
+  );
+
   if (!cities || cities.length === 0) {
     return <div>No cities to display</div>;
   }
 
   return (
     <div className={styles.mapContainer}>
-      <Button type="position" onClick={getPosition}>
-        {isLoadingPosition ? 'Loading...' : 'Use your position'}
-      </Button>
+      {!geolocationPosition && (
+        <Button type="position" onClick={getPosition}>
+          {isLoadingPosition ? 'Loading...' : 'Use your position'}
+        </Button>
+      )}
       <MapContainer
         center={mapPosition}
         zoom={6}
@@ -93,7 +102,7 @@ function ChangeCenter({ position }) {
 function DetectClick() {
   const navigate = useNavigate();
   useMapEvent({
-    click: (e) => navigate(`form?lat=${e.latlng.lat}lng=${e.latlng.lng}`),
+    click: (e) => navigate(`form?lat=${e.latlng.lat}&lng=${e.latlng.lng}`),
   });
 }
 

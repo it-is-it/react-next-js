@@ -13,30 +13,6 @@
       "id": "73930385"
     },
     {
-      "cityName": "Madrid",
-      "country": "Spain",
-      "emoji": "🇪🇸",
-      "date": "2027-07-15T08:22:53.976Z",
-      "notes": "",
-      "position": {
-        "lat": 40.46635901755316,
-        "lng": -3.7133789062500004
-      },
-      "id": "17806751"
-    },
-    {
-      "cityName": "Berlin",
-      "country": "Germany",
-      "emoji": "🇩🇪",
-      "date": "2027-02-12T09:24:11.863Z",
-      "notes": "Amazing 😃",
-      "position": {
-        "lat": 52.53586782505711,
-        "lng": 13.376933665713324
-      },
-      "id": "98443197"
-    },
-    {
       "cityName": "Kathmandu",
       "country": "Nepal",
       "emoji": "🇳🇵",
@@ -44,21 +20,9 @@
       "notes": "The capital city of Nepal.",
       "position": {
         "lat": 27.7172,
-        "lng": 85.3240
+        "lng": 85.324
       },
       "id": "12345678"
-    },
-    {
-      "cityName": "Sydney",
-      "country": "Australia",
-      "emoji": "🇦🇺",
-      "date": "2027-09-12T14:30:00.000Z",
-      "notes": "Famous for the Opera House.",
-      "position": {
-        "lat": -33.8688,
-        "lng": 151.2093
-      },
-      "id": "87654321"
     },
     {
       "cityName": "New York",
@@ -68,9 +32,57 @@
       "notes": "The city that never sleeps!",
       "position": {
         "lat": 40.7128,
-        "lng": -74.0060
+        "lng": -74.006
       },
       "id": "11223344"
+    },
+    {
+      "cityName": "Tokyo",
+      "country": "Japan",
+      "emoji": "🇯🇵",
+      "date": "2027-07-15T12:00:00.000Z",
+      "notes": "A mix of tradition and modernity.",
+      "position": {
+        "lat": 35.6762,
+        "lng": 139.6503
+      },
+      "id": "55667788"
+    },
+    {
+      "cityName": "Paris",
+      "country": "France",
+      "emoji": "🇫🇷",
+      "date": "2027-06-10T08:00:00.000Z",
+      "notes": "The city of love and lights.",
+      "position": {
+        "lat": 48.8566,
+        "lng": 2.3522
+      },
+      "id": "99887766"
+    },
+    {
+      "cityName": "Cairo",
+      "country": "Egypt",
+      "emoji": "🇪🇬",
+      "date": "2025-01-27T04:49:36.636Z",
+      "notes": "Mohamadd salah from egypt",
+      "position": {
+        "lat": 29.92002552665168,
+        "lng": 31.592833667101207
+      },
+      "id": "cjqvQK_"
+    },
+    {
+      "cityName": "London",
+      "country": "United Kingdom of Great Britain and Northern Ireland (the)",
+      "emoji": "🇬🇧",
+      "date": "2025-01-27T05:22:10.378Z",
+      "notes": "it's coming home",
+      "position": {
+        "lat": 51.48311074588504,
+        "lng": 0.021556298508556008
+      },
+      "id": "LfcVl53"
     }
   ]
 }
