@@ -1,40 +1,333 @@
+/* Global box-sizing */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 body {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
     Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   margin: 40px;
+  background-color: #f5f5f5;
 }
 
 input,
 select {
-  margin: 0 8px;
-  padding: 4px 8px;
+  margin: 0;
+  padding: 6px 10px;
   font: inherit;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.account-operations {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.account-operations h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  background-color: #f7f7f7;
+  padding: 32px;
+  border-radius: 10px;
+}
+
+.inputs div {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px;
+  border-radius: 5px;
+  background: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.inputs label {
+  font-weight: bold;
+  color: #444;
+}
+
+.input-field {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 button {
   text-transform: uppercase;
   font-weight: bold;
-  padding: 6px 8px;
+  padding: 8px 12px;
   cursor: pointer;
+  border: none;
+  background-color: #3498db;
+  color: white;
+  font-size: 15px;
+  border-radius: 5px;
+  transition: background 0.3s ease;
 }
 
-.inputs {
-  background-color: #f7f7f7;
-  padding: 32px;
+button:hover {
+  background-color: #2980b9;
 }
 
-.inputs > * + * {
-  margin-top: 20px;
+button:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+body.dark-mode {
+  background-color: #1e2a3a;
+  color: #f5f5f5;
+}
+
+.dark-mode .customer-container,
+.dark-mode .account-operations,
+.dark-mode .balance,
+.dark-mode .inputs,
+.dark-mode .pay-loan {
+  background-color: #2a3b4c;
+  color: #fff;
+}
+
+.dark-mode input,
+.dark-mode select {
+  background: #3b4a5d;
+  color: #fff;
+  border: 1px solid #777;
+}
+
+.dark-mode button {
+  background-color: #5c7a9f;
+}
+
+.dark-mode button:hover {
+  background-color: #4a6d8c;
+}
+
+.dark-mode .customer-container h2,
+.dark-mode .account-operations h2 {
+  color: white;
+}
+
+input:focus,
+button:focus {
+  outline: 2px solid #0056b3;
+  outline-offset: 2px;
+}
+
+input,
+select {
+  width: 100%;
+}
+
+button:active {
+  transform: scale(0.98);
 }
 
 .balance {
-  position: absolute;
-  top: 40px;
-  right: 40px;
+  position: fixed;
+  top: 20px;
+  right: 20px;
   background-color: #f7f7f7;
-  padding: 24px 32px;
+  padding: 20px 30px;
   font-weight: bold;
-  font-size: 32px;
-  min-width: 180px;
+  font-size: 20px;
+  min-width: 150px;
   text-align: center;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ddd;
+}
+
+.pay-loan {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 20px; 
+  background: #4caf50;
+  border-radius: 8px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.pay-loan span {
+  font-size: 14px;
+  font-weight: bold;
+  color: white; 
+  align-items: center;
+}
+
+
+.pay-loan button {
+  background: #28a745; 
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.pay-loan button:hover {
+  background: #218838; 
+  transform: scale(1.05); 
+}
+
+.customer-container {
+  max-width: 500px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.customer-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.customer-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 20px;
+  background: #f7f7f7;
+  border-radius: 10px;
+}
+
+.customer-inputs div {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 10px;
+  border-radius: 5px;
+  background: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.customer-inputs label {
+  font-weight: bold;
+  color: #444;
+}
+
+.customer-inputs input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.customer-button {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  font-size: 15px;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  text-transform: uppercase;
+}
+
+.customer-button:hover {
+  background: #0056b3;
+}
+
+.customer-button:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+@media (max-width: 600px) {
+  .customer-container,
+  .account-operations {
+    max-width: 100%;
+    padding: 15px;
+  }
+
+  .balance {
+    top: 10px;
+    right: 10px;
+    padding: 15px 20px;
+    font-size: 18px;
+  }
+}
+
+.dark-mode-toggle {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  background: #5c7a9f;
+  color: white;
+  padding: 15px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 15px;
+  transition: background 0.3s ease;
+}
+
+.dark-mode-toggle:hover {
+  background: #4a6d8c;
+}
+
+input::placeholder,
+select::placeholder {
+  color: #888;
+}
+
+body.dark-mode input::placeholder,
+body.dark-mode select::placeholder {
+  color: #ccc;
+}
+
+* {
+  transition: all 0.3s ease;
+}
+
+button {
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.inputs label,
+.customer-inputs label {
+  color: #222;
+  letter-spacing: 0.5px;
+}
+
+.dark-mode-toggle {
+  background: #007bff;
+}
+
+.dark-mode-toggle:hover {
+  background: #0056b3;
+}
+
+.app-container {
+  padding: 20px;
+  text-align: center;
+}
+
+.dark-mode span {
+  color: #000; 
 }

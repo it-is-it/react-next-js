@@ -1,16 +1,27 @@
+import './index.css';
 import CreateCustomer from './features/customers/CreateCustomer';
 import Customer from './features/customers/Customer';
 import AccountOperations from './features/account/AccountOperations';
 import BalanceDisplay from './features/account/BalanceDisplay';
+import { useSelector } from 'react-redux';
+import DarkModeToggle from './DarkModeToggle';
 
 function App() {
+  const fullName = useSelector((state) => state.customer.fullName);
+
   return (
-    <div>
+    <div className="app-container">
       <h1>🏦 The React-Redux Bank ⚛️</h1>
-      <CreateCustomer />
-      <Customer />
-      <AccountOperations />
-      <BalanceDisplay />
+      <DarkModeToggle />
+      {fullName === '' ? (
+        <CreateCustomer />
+      ) : (
+        <>
+          <Customer />
+          <AccountOperations />
+          <BalanceDisplay />
+        </>
+      )}
     </div>
   );
 }
