@@ -60,22 +60,35 @@ function Map() {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png"
         />
-        {cities.map((city) => (
-          <Marker
-            position={[city.position.lat, city.position.lng]}
-            key={city.id}
-          >
-            <Popup>
-              <div>
-                <span role="img" aria-label={`Flag of ${city.cityName}`}>
-                  {city.emoji}
-                </span>{' '}
-                <strong>{city.cityName}</strong>
-                <p>{city.notes}</p>
-              </div>
-            </Popup>
-          </Marker>
-        ))}
+        {cities.map((city) => {
+          const position = city.position;
+
+          // Debug log to check city and position data
+          if (!position) {
+            console.warn(`City ${city.cityName} has no position data`);
+            return null; // Skip this city if no position data is available
+          }
+
+          const { lat, lng } = position;
+          if (isNaN(lat) || isNaN(lng)) {
+            console.warn(`City ${city.cityName} has invalid position data:`, position);
+            return null; // Skip this city if position data is invalid
+          }
+
+          return (
+            <Marker position={[lat, lng]} key={city.id}>
+              <Popup>
+                <div>
+                  <span role="img" aria-label={`Flag of ${city.cityName}`}>
+                    {city.emoji}
+                  </span>{' '}
+                  <strong>{city.cityName}</strong>
+                  <p>{city.notes}</p>
+                </div>
+              </Popup>
+            </Marker>
+          );
+        })}
         <ChangeCenter
           position={
             !isNaN(mapLat) && !isNaN(mapLng) ? [mapLat, mapLng] : mapPosition

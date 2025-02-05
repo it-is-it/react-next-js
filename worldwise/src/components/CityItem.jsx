@@ -10,9 +10,17 @@ const formatDate = (date) =>
   }).format(new Date(date));
 
 function CityItem({ city }) {
+  // Always call hooks at the top level
   const { currentCity, deleteCity } = useCities();
+
+  // Safeguard: Check if city or position is missing
+  if (!city || !city.position) {
+    return <li>Error: City or position data is missing.</li>;
+  }
+
   const { cityName, emoji, date, id, position } = city;
 
+  // Handle click for deleting a city
   function handleClick(e) {
     e.preventDefault();
     deleteCity(id);
@@ -22,7 +30,7 @@ function CityItem({ city }) {
     <li>
       <Link
         className={`${styles.cityItem} ${
-          id === currentCity.id ? styles['cityItem--active'] : ''
+          currentCity && currentCity.id === id ? styles['cityItem--active'] : ''
         }`}
         to={`${id}?lat=${position.lat}&lng=${position.lng}`}
       >

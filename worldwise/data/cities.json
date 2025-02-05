@@ -83,6 +83,18 @@
         "lng": 0.021556298508556008
       },
       "id": "LfcVl53"
+    },
+    {
+      "cityName": "Nagqu",
+      "country": "China",
+      "emoji": "🇨🇳",
+      "date": "2025-02-05T07:46:39.620Z",
+      "notes": "how about that",
+      "position": {
+        "lat": 31.953764078988538,
+        "lng": 85.51757812500001
+      },
+      "id": "4y2OC2Q"
     }
   ]
 }
