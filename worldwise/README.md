@@ -4,7 +4,7 @@
 
 ## 🌍 Live Demo
 
-[WorldWise - Live Deployment](https://worldwise-2cx7mcavg-itisits-projects.vercel.app/)
+[WorldWise - Live Deployment](https://worldwise-lyart.vercel.app/)
 
 ## ✨ Features
 
