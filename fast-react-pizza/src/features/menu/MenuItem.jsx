@@ -1,4 +1,5 @@
-import { formatCurrency } from "../../utils/helpers";
+import PropTypes from 'prop-types';
+import { formatCurrency } from '../../utils/helpers';
 
 function MenuItem({ pizza }) {
   const { id, name, unitPrice, ingredients, soldOut, imageUrl } = pizza;
@@ -16,5 +17,17 @@ function MenuItem({ pizza }) {
     </li>
   );
 }
+
+// Prop validation for the pizza prop
+MenuItem.propTypes = {
+  pizza: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+    unitPrice: PropTypes.number.isRequired,
+    ingredients: PropTypes.arrayOf(PropTypes.string).isRequired,
+    soldOut: PropTypes.bool,
+    imageUrl: PropTypes.string.isRequired,
+  }).isRequired,
+};
 
 export default MenuItem;
