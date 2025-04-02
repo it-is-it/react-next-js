@@ -18,7 +18,7 @@ export async function deleteCabin(id) {
     .eq('id', String(id));
   if (error) {
     console.error(error);
-    throw new Error('cabin could not be deleted');
+    throw new Error('Cabin could not be deleted');
   }
 
   return data;
