@@ -172,10 +172,14 @@ function DurationChart({ confirmedStays }) {
           <Legend
             verticalAlign="middle"
             align="right"
-            width="30%"
             layout="vertical"
             iconSize={15}
             iconType="circle"
+            payload={data.map((item) => ({
+              value: item.duration,
+              type: 'circle',
+              color: item.color,
+            }))}
           />
         </PieChart>
       </ResponsiveContainer>
